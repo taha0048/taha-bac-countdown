@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BAC Pratique Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #213448;
+      color: #ECEFCA;
+      text-align: center;
+      padding: 20px 0;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #ECEFCA;
+    }
+    .countdown {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      font-size: 5rem;
+      font-weight: bold;
+    }
+    .countdown div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .countdown div span:first-child {
+      color: #94B4C1;
+    }
+    /* Seconds in red */
+    #seconds, .seconds {
+      color: red !important;
+    }
+    .label {
+      font-size: 0.9rem;
+      margin-top: 5px;
+      color: #ECEFCA;
+    }
+    footer {
+      font-size: 0.9rem;
+      color: #ECEFCA;
+      margin: 0;
+    }
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 3rem;
+      }
+      .countdown {
+        font-size: 6rem;
+        gap: 20px;
+      }
+      .label {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>BAC PRATIQUE COUNTDOWN</h1>
+  <div class="countdown">
+    <div><span id="days">00</span><span class="label">DAYS</span></div>
+    <div><span>:</span></div>
+    <div><span id="hours">00</span><span class="label">HOURS</span></div>
+    <div><span>:</span></div>
+    <div><span id="minutes">00</span><span class="label">MINUTES</span></div>
+    <div><span>:</span></div>
+    <div><span id="seconds" class="seconds">00</span><span class="label">SECONDS</span></div>
+  </div>
+  <footer>
+    &copy; 2025 taha bac info 2k25. All rights reserved.
+  </footer>
+  <script>
+    const countdownDate = new Date("May 15, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
